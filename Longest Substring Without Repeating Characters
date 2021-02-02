@@ -1,0 +1,24 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+
+        if s == "":
+            return 0       
+        if len(s) == 1:
+            return 1
+        
+        ss, i, j, unique = '', 0, 0, set()
+        
+        while j < len(s):   
+            if s[j] not in ss:
+                ss += s[j]
+            else:
+                unique.add(ss)
+                ss = ''
+                i += 1
+                j = i
+                continue
+            j += 1
+            
+        unique.add(ss)
+                
+        return len(max(unique, key=len))        
